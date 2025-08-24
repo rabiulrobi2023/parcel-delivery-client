@@ -85,7 +85,7 @@ export default function Navbar() {
               <Logo />
             </a>
             {/* Navigation menu */}
-            <h1 className="text-first text-2xl md:text-3xl font-bold">
+            <h1 className="text-first text-xl md:text-2xl font-bold">
               Delivera
             </h1>
           </div>
@@ -110,7 +110,15 @@ export default function Navbar() {
             <ModeToggler></ModeToggler>
           </div>
           {/* User menu */}
-          {user ? <UserMenu /> : <Link to={"/login"} className="font-bold text-first">Login</Link>}
+          {user ? (
+            <UserMenu />
+          ) : (
+            <Link to={"/login"}>
+              <p className="font-bold text-first hover:text-amber-400">
+                Login
+              </p>
+            </Link>
+          )}
         </div>
       </div>
     </header>

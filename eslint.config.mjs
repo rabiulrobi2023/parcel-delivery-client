@@ -15,6 +15,11 @@ export default tseslint.config(
       "no-multi-spaces": "error",
       "no-empty-function": "warn",
       "no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/no-var-requires": "error",
     },
   }
 );

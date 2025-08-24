@@ -1,10 +1,12 @@
 import AccountLayout from "@/layout/AccountLayout";
-import { RegistrationForm } from "@/modules/RegistrationForm";
+import { RegistrationForm } from "@/modules/RegistrationForm/RegistrationForm";
 
 const Registration = () => {
   return (
     <AccountLayout>
-      <RegistrationForm></RegistrationForm>
+     <div className=" flex flex-col container mx-auto">
+       <RegistrationForm></RegistrationForm>
+     </div>
     </AccountLayout>
   );
 };

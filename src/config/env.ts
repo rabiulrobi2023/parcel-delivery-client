@@ -1,3 +1,4 @@
 export const envValirable = {
-  baseUrl: import.meta.env.VITE_BASE_URL,
+  baseUrlLocal: import.meta.env.VITE_BASE_URL_LOCAL,
+  baseUrlServer: import.meta.env.VITE_BASE_URL_SERVER,
 };

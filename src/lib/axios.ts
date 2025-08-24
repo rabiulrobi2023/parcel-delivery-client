@@ -2,7 +2,7 @@ import { envValirable } from "@/config/env";
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: envValirable.baseUrl,
+  baseURL: envValirable.baseUrlLocal, withCredentials:true
 });
 
 axiosInstance.interceptors.request.use(

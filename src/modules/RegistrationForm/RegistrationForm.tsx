@@ -26,35 +26,9 @@ import { useUserRegistrationMutation } from "@/redux/features/auth/auth.api";
 import { toast } from "sonner";
 import { LineSpinner } from "ldrs/react";
 import "ldrs/react/LineSpinner.css";
+import { registrationFormSchema } from "./registrationForm.schema";
 
-const registrationFormSchema = z
-  .object({
-    name: z
-      .string()
-      .min(2, { error: "Name must be at least 2 charaters" })
-      .max(40, { error: "Name must be maximum 40 characters" }),
-    email: z.email({ error: "Input must be email type" }),
-    password: z
-      .string()
-      .min(6, { error: "Passowrd must be at least 6 characters" })
-      .max(16, { error: "Password must be maximum 16 characters" }),
-    confirmPassword: z
-      .string()
-      .min(6, { error: "Passowrd must be at least 6 characters" })
-      .max(16, { error: "Password must be maximum 16 characters" }),
-    phone: z
-      .string()
-      .trim()
-      .regex(/^01[3-9]\d{8}$/, "Invalid mobile number format"),
-    address: z.string(),
-    role: z.enum([Role.sender, Role.receiver], {
-      error: "Role must be required",
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ["confirmPassword"],
-    error: "Password does not matched",
-  });
+
 
 export function RegistrationForm() {
   const form = useForm<z.infer<typeof registrationFormSchema>>({
@@ -100,17 +74,19 @@ export function RegistrationForm() {
     }
   };
   return (
-    <div className="w-full  lg:w-1/2 flex flex-col mx-auto items-center  bg-fi">
+    <div className="flex flex-col mx-auto items-center w-full px-4 md:p-0 mb-5">
       {isLoading && (
         <div className="fixed inset-0 z-80 flex items-center justify-center ">
           <LineSpinner size="60" stroke="3" speed="1" color="gray" />
         </div>
       )}
       <Form {...form}>
-        <h1 className="text-3xl font-bold text-first py-3">Create Account</h1>
+        <h1 className="text-xl md:text-3xl font-bold text-first py-3">
+          Create Account
+        </h1>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-2/3 space-y-3 border-[1px] p-8 rounded-[10px] shadow-2xl"
+          className="w-full md:w-1/2 space-y-3 border-[1px] p-8 md:p-16 rounded-[10px] shadow-2xl "
         >
           <FormField
             control={form.control}
@@ -243,7 +219,9 @@ export function RegistrationForm() {
             disabled={isLoading}
             type="submit"
             className="bg-second font-bold w-full rounded-sm hover:bg-first mt-5"
-          >Submit</Button>
+          >
+            Submit
+          </Button>
           <p className="text-center">
             Already have an account?{" "}
             <span className="text-first font-bold">
