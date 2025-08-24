@@ -1,10 +1,11 @@
 import CommonLayout from "@/layout/CommonLayout";
-import { Outlet } from "react-router";
 
 function Home() {
   return (
     <CommonLayout>
-      <Outlet></Outlet>
+      <div className="flex mx-auto container">
+        <p>This is Home Page</p>
+      </div>
     </CommonLayout>
   );
 }

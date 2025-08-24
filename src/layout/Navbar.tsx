@@ -1,6 +1,3 @@
-import InfoMenu from "@/components/ui/info-menu";
-
-import NotificationMenu from "@/components/ui/notification-menu";
 import UserMenu from "@/components/ui/user-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Logo from "@/components/ui/logo";
+import ModeToggler from "@/components/ui/mode.toggler";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -26,8 +24,8 @@ const navigationLinks = [
 
 export default function Navbar() {
   return (
-    <header className="border-b px-4 md:px-6">
-      <div className="flex h-16 items-center justify-between gap-4">
+    <header className="px-4 md:px-6 text-[14px  bg-second">
+      <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
         {/* Left side */}
         <div className="flex items-center gap-2">
           {/* Mobile menu trigger */}
@@ -80,13 +78,15 @@ export default function Navbar() {
             </PopoverContent>
           </Popover>
           {/* Main nav */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:min-w-[180px]">
             <a href="#" className="text-primary hover:text-primary/90">
               <Logo />
             </a>
             {/* Navigation menu */}
+            <h1 className="text-first text-2xl md:text-3xl font-bold">
+         Delivera
+            </h1>
           </div>
-          <h1 className="text-"><span>Sure</span> Ship</h1>
         </div>
         <NavigationMenu className="max-md:hidden">
           <NavigationMenuList className="gap-2">
@@ -94,7 +94,7 @@ export default function Navbar() {
               <NavigationMenuItem key={index}>
                 <NavigationMenuLink
                   href={link.href}
-                  className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                  className=" hover:text-primary py-1.5 font-medium text-white"
                 >
                   {link.label}
                 </NavigationMenuLink>
@@ -103,12 +103,9 @@ export default function Navbar() {
           </NavigationMenuList>
         </NavigationMenu>
         {/* Right side */}
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4 md:min-w-[180px] justify-end">
           <div className="flex items-center gap-2">
-            {/* Info menu */}
-            <InfoMenu />
-            {/* Notification */}
-            <NotificationMenu />
+            <ModeToggler></ModeToggler>
           </div>
           {/* User menu */}
           <UserMenu />

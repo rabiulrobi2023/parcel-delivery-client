@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
+
 
 interface ICommonLayout {
   children: ReactNode;
@@ -7,10 +9,12 @@ interface ICommonLayout {
 
 const CommonLayout = ({ children }: ICommonLayout) => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen  mx-auto">
       <Navbar></Navbar>
-      <div>{children}</div>
+      <div className="grow-1">{children}</div>
+      <Footer></Footer>
     </div>
+
   );
 };
 
