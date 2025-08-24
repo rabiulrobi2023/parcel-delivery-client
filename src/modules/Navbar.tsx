@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/popover";
 import Logo from "@/components/ui/logo";
 import ModeToggler from "@/components/ui/mode.toggler";
+import { Link } from "react-router";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -23,6 +24,7 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
+  const user = false;
   return (
     <header className="px-4 md:px-6 text-[14px  bg-second">
       <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
@@ -84,7 +86,7 @@ export default function Navbar() {
             </a>
             {/* Navigation menu */}
             <h1 className="text-first text-2xl md:text-3xl font-bold">
-         Delivera
+              Delivera
             </h1>
           </div>
         </div>
@@ -108,7 +110,7 @@ export default function Navbar() {
             <ModeToggler></ModeToggler>
           </div>
           {/* User menu */}
-          <UserMenu />
+          {user ? <UserMenu /> : <Link to={"/login"} className="font-bold text-first">Login</Link>}
         </div>
       </div>
     </header>

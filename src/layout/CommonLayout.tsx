@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "../modules/Navbar";
+import Footer from "../modules/Footer";
 
 
 interface ICommonLayout {
