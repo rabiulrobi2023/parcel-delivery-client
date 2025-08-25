@@ -1,4 +1,4 @@
-import { BoltIcon, LogOutIcon } from "lucide-react";
+import { LayoutDashboardIcon, LogOutIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -14,8 +14,11 @@ import {
 import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 import type { IUser } from "@/interfaces/user.interface";
 import { useAppDispatch } from "@/hooks/reduxHook";
+import { Link } from "react-router";
 
 export default function UserMenu({ user }: { user: IUser }) {
+  const splitName = user?.name?.split(" ");
+  console.log(splitName);
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const handleLogout = async () => {
@@ -29,7 +32,7 @@ export default function UserMenu({ user }: { user: IUser }) {
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar>
             <AvatarImage src="./avatar.jpg" alt="Profile image" />
-            <AvatarFallback>KK</AvatarFallback>
+            <AvatarFallback>{splitName[0]}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -41,13 +44,23 @@ export default function UserMenu({ user }: { user: IUser }) {
           <span className="text-muted-foreground truncate text-xs font-normal">
             {user.email}
           </span>
+          <span className="truncate text-xs  text-green-800 capitalize font-bold">
+            {user?.role}
+          </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <BoltIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>{user.role}</span>
-          </DropdownMenuItem>
+          <Link to={`/dashboard/${user?.role}`}>
+            <DropdownMenuItem>
+              <LayoutDashboardIcon
+                size={16}
+                className="opacity-60"
+                aria-hidden="true"
+              />
+              <span>Dashboard</span>
+            </DropdownMenuItem>
+          </Link>
+
           {/* <DropdownMenuItem>
             <Layers2Icon size={16} className="opacity-60" aria-hidden="true" />
             <span>Option 2</span>
