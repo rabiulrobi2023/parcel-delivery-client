@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { Role } from "@/interfaces/role.interface";
+import { Role } from "@/constants/role";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,8 +27,6 @@ import { toast } from "sonner";
 import { LineSpinner } from "ldrs/react";
 import "ldrs/react/LineSpinner.css";
 import { registrationFormSchema } from "./registrationForm.schema";
-
-
 
 export function RegistrationForm() {
   const form = useForm<z.infer<typeof registrationFormSchema>>({

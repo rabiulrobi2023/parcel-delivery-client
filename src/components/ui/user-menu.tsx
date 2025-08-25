@@ -1,18 +1,7 @@
-import {
-  BoltIcon,
-  BookOpenIcon,
-  Layers2Icon,
-  LogOutIcon,
-  PinIcon,
-  UserPenIcon,
-} from "lucide-react"
+import { BoltIcon, LogOutIcon } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,9 +10,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
+import type { IUser } from "@/interfaces/user.interface";
+import { useAppDispatch } from "@/hooks/reduxHook";
 
-export default function UserMenu() {
+export default function UserMenu({ user }: { user: IUser }) {
+  const dispatch = useAppDispatch();
+  const [logout] = useLogoutMutation();
+  const handleLogout = async () => {
+    await logout(undefined);
+    dispatch(authApi.util.resetApiState()); //It use to clear case. Without it api case does not clean.
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -37,19 +36,19 @@ export default function UserMenu() {
       <DropdownMenuContent className="max-w-64" align="end">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
-            Keith Kennedy
+            {user.name}
           </span>
           <span className="text-muted-foreground truncate text-xs font-normal">
-            k.kennedy@originui.com
+            {user.email}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <BoltIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Option 1</span>
+            <span>{user.role}</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          {/* <DropdownMenuItem>
             <Layers2Icon size={16} className="opacity-60" aria-hidden="true" />
             <span>Option 2</span>
           </DropdownMenuItem>
@@ -67,14 +66,14 @@ export default function UserMenu() {
           <DropdownMenuItem>
             <UserPenIcon size={16} className="opacity-60" aria-hidden="true" />
             <span>Option 5</span>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
-          <span>Logout</span>
+          <span onClick={handleLogout}>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

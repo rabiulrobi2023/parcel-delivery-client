@@ -14,6 +14,7 @@ import {
 import Logo from "@/components/ui/logo";
 import ModeToggler from "@/components/ui/mode.toggler";
 import { Link } from "react-router";
+import { useGetMeQuery } from "@/redux/features/auth/auth.api";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -24,7 +25,10 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
-  const user = false;
+  const { data } = useGetMeQuery(undefined);
+  const user = data?.data;
+
+
   return (
     <header className="px-4 md:px-6 text-[14px  bg-second">
       <div className="flex h-16 items-center justify-between gap-4 container mx-auto">
@@ -110,13 +114,11 @@ export default function Navbar() {
             <ModeToggler></ModeToggler>
           </div>
           {/* User menu */}
-          {user ? (
-            <UserMenu />
+          {user?.email ? (
+            <UserMenu key={user._id} user={user} />
           ) : (
             <Link to={"/login"}>
-              <p className="font-bold text-first hover:text-amber-400">
-                Login
-              </p>
+              <p className="font-bold text-first hover:text-amber-400">Login</p>
             </Link>
           )}
         </div>

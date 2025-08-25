@@ -1,6 +1,1 @@
-export enum Role {
-  superAdmin = "superAdmin",
-  admin = "admin",
-  sender = "sender",
-  receiver = "receiver",
-}
+export type TRole = "superAdmin" | "admin" | "sender" | "receiver";

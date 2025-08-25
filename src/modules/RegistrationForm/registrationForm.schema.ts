@@ -1,4 +1,4 @@
-import { Role } from "@/interfaces/role.interface";
+import { Role } from "@/constants/role";
 import z from "zod";
 
 export const registrationFormSchema = z
