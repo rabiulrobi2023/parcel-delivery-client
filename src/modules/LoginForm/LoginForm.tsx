@@ -13,12 +13,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import Password from "@/components/ui/password";
-import { useUserLoginMutation } from "@/redux/features/auth/auth.api";
+
 import { toast } from "sonner";
 import { LineSpinner } from "ldrs/react";
 import "ldrs/react/LineSpinner.css";
-import { loginFormSchema } from "./LoginForm.schema";
+
 import Logo from "@/components/ui/logo";
+import { loginFormSchema } from "./loginForm.schema";
+import { useUserLoginMutation } from "@/redux/features/auth/auth.api";
 
 export function LoginForm() {
   const form = useForm<z.infer<typeof loginFormSchema>>({
@@ -39,14 +41,14 @@ export function LoginForm() {
     };
 
     try {
-      const result = await userRegistration(userInfo).unwrap();
+      await userRegistration(userInfo).unwrap();
       if (isLoading) {
         return <LineSpinner size="40" stroke="3" speed="1" color="black" />;
       }
       toast.success("User Login successfull");
 
       navigate("/");
-      console.log(result);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.data.message);

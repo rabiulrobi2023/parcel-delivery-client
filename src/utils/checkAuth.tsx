@@ -1,6 +1,6 @@
 import type { TRole } from "@/interfaces/role.interface";
 import type { IUser } from "@/interfaces/user.interface";
-import Unauthorized from "@/pages/Unauthorized";
+
 import { useGetMeQuery } from "@/redux/features/auth/auth.api";
 import { LineSpinner } from "ldrs/react";
 import type { ComponentType } from "react";

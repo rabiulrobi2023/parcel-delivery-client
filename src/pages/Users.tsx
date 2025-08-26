@@ -1,5 +1,9 @@
+import { useAllUsersQuery } from "@/redux/features/user/user.api";
+
 const Users = () => {
-  return <div><p>All User</p></div>;
+  const { data } = useAllUsersQuery(undefined);
+  console.log(data)
+  return <div></div>;
 };
 
 export default Users;

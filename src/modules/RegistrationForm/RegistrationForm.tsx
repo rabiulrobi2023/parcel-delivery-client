@@ -22,11 +22,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Password from "@/components/ui/password";
-import { useUserRegistrationMutation } from "@/redux/features/auth/auth.api";
+
 import { toast } from "sonner";
 import { LineSpinner } from "ldrs/react";
 import "ldrs/react/LineSpinner.css";
 import { registrationFormSchema } from "./registrationForm.schema";
+import { useUserRegistrationMutation } from "@/redux/features/auth/auth.api";
 
 export function RegistrationForm() {
   const form = useForm<z.infer<typeof registrationFormSchema>>({
@@ -44,10 +45,8 @@ export function RegistrationForm() {
   const navigate = useNavigate();
 
   const [userRegistration, { isLoading }] = useUserRegistrationMutation();
-  console.log(isLoading);
 
   const onSubmit = async (data: z.infer<typeof registrationFormSchema>) => {
-    console.log(data);
     const userInfo = {
       name: data.name,
       email: data.email,
@@ -58,14 +57,14 @@ export function RegistrationForm() {
     };
 
     try {
-      const result = await userRegistration(userInfo).unwrap();
+      await userRegistration(userInfo).unwrap();
       if (isLoading) {
         return <LineSpinner size="40" stroke="3" speed="1" color="black" />;
       }
       toast.success("User created successfull");
 
       navigate("/login");
-      console.log(result);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.data.message);

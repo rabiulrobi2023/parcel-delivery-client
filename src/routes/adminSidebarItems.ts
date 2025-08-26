@@ -4,17 +4,33 @@ import type { IRouteItems } from "@/utils/generateRoutes";
 
 export const adminSidebarItems: IRouteItems[] = [
   {
-    title: "Dashboard",
+    title: "User Management",
     url: "/dashboard/admin",
     items: [
       {
-        title: "All Users",
+        title: "Users",
         url: "all-users",
         component: Users,
       },
       {
-        title: "All Parcels",
-        url: "all-parcels",
+        title: "Create Admin",
+        url: "create-admin",
+        component: Parcels,
+      },
+    ],
+  },
+  {
+    title: "Parcel Management",
+    url: "/dashboard/admin",
+    items: [
+      {
+        title: "Users",
+        url: "all-users",
+        component: Users,
+      },
+      {
+        title: "Create Admin",
+        url: "create-admin",
         component: Parcels,
       },
     ],

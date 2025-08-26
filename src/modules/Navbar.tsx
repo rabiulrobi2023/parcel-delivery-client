@@ -16,18 +16,16 @@ import ModeToggler from "@/components/ui/mode.toggler";
 import { Link } from "react-router";
 import { useGetMeQuery } from "@/redux/features/auth/auth.api";
 
+
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/service", label: "Service" },
-
 ];
 
 export default function Navbar() {
   const { data } = useGetMeQuery(undefined);
   const user = data?.data;
-  console.log(user);
-
   return (
     <header className="px-4 md:px-6 text-[14px  bg-second">
       <div className="flex h-16 items-center justify-between gap-4 container mx-auto">

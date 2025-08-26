@@ -11,14 +11,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
+
 import type { IUser } from "@/interfaces/user.interface";
 import { useAppDispatch } from "@/hooks/reduxHook";
 import { Link } from "react-router";
+import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 
 export default function UserMenu({ user }: { user: IUser }) {
   const splitName = user?.name?.split(" ");
-  console.log(splitName);
   const dispatch = useAppDispatch();
   const [logout] = useLogoutMutation();
   const handleLogout = async () => {
