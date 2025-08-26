@@ -3,11 +3,15 @@ import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Registration from "@/pages/Registration";
 import { generateRoutes } from "@/utils/generateRoutes";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
 import { senderSidebarItems } from "./senderSidebarItems";
 import { receiverSidebarItems } from "./receiverSidebarItems";
 import { superAdminSidebarItems } from "./superAdminSidebarItems copy";
+import checkAuth from "@/utils/checkAuth";
+import About from "@/pages/About";
+import { Role } from "@/constants/role";
+import Unauthorized from "@/pages/Unauthorized";
 
 const superAdminRoutes = generateRoutes(superAdminSidebarItems);
 const adminRoutes = generateRoutes(adminSidebarItems);
@@ -29,24 +33,35 @@ const router = createBrowserRouter([
     path: "/registration",
     Component: Registration,
   },
+  {
+    path: "/about",
+    Component: About,
+  },
+  {
+    path: "/unauthorized",
+    Component: Unauthorized,
+  },
 
   {
-    Component: DashboardLayout,
+    Component: checkAuth(DashboardLayout, Role.superAdmin),
     path: superAdminRoutes.path,
     children: superAdminRoutes.children,
   },
   {
-    Component: DashboardLayout,
+    Component: checkAuth(DashboardLayout, Role.admin),
     path: adminRoutes.path,
     children: adminRoutes.children,
   },
   {
-    Component: DashboardLayout,
+    Component: checkAuth(DashboardLayout, Role.sender),
     path: senderRoutes.path,
-    children: senderRoutes.children,
+    children: [
+      { index: true, element: <Navigate to="/dashboard/sender/analytics" /> },
+      ...senderRoutes.children,
+    ],
   },
   {
-    Component: DashboardLayout,
+    Component: checkAuth(DashboardLayout, Role.receiver),
     path: receiverRoutes.path,
     children: receiverRoutes.children,
   },

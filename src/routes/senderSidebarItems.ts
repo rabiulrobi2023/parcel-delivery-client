@@ -1,7 +1,7 @@
 import Parcels from "@/pages/Parcels";
-import Users from "@/pages/Users";
 import type { IRouteItems } from "@/utils/generateRoutes";
-
+import { lazy } from "react";
+const Users = lazy(() => import("@/pages/Users"));
 export const senderSidebarItems: IRouteItems[] = [
   {
     title: "Dashboard",
@@ -15,6 +15,11 @@ export const senderSidebarItems: IRouteItems[] = [
       {
         title: "Update Parcel",
         url: "update-parcel",
+        component: Parcels,
+      },
+      {
+        title: "Analytics",
+        url: "analytics",
         component: Parcels,
       },
     ],
