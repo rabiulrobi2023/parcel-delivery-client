@@ -3,7 +3,7 @@ import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Registration from "@/pages/Registration";
 import { generateRoutes } from "@/utils/generateRoutes";
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter,  } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
 import { senderSidebarItems } from "./senderSidebarItems";
 
@@ -56,10 +56,7 @@ const router = createBrowserRouter([
   {
     Component: checkAuth(DashboardLayout, Role.sender),
     path: senderRoutes.path,
-    children: [
-      { index: true, element: <Navigate to="/dashboard/sender/analytics" /> },
-      ...senderRoutes.children,
-    ],
+    children: senderRoutes.children,
   },
   {
     Component: checkAuth(DashboardLayout, Role.receiver),

@@ -16,7 +16,7 @@ import {
   useDeleteUserMutation,
   useUnblockUserMutation,
 } from "@/redux/features/user/user.api";
-import { LineSpinner } from "ldrs/react";
+
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -24,10 +24,9 @@ const Users = () => {
   const { data } = useAllUsersQuery(undefined);
   const users: Partial<IUser>[] = data;
 
-  const [deleteUser, { isLoading: isDeleteLoading }] = useDeleteUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
   const [blockUser, { isLoading: isBlockLoading }] = useBlockUserMutation();
-  const [unblockUser, { isLoading: isUnblockLoading }] =
-    useUnblockUserMutation();
+  const [unblockUser] = useUnblockUserMutation();
 
   const deleteDescription = "Are you sure delete the user ?";
   const blockDescription = "Are you sure block the user";
@@ -80,11 +79,11 @@ const Users = () => {
       <Table className="border-[1px] border-gray-400">
         <TableHeader>
           <TableRow className="bg-gray-400 text-white hover:bg-gray-400">
-            <TableHead className="w-[75px] text-center" >SL No</TableHead>
-            <TableHead >Name</TableHead>
-            <TableHead >Eamil</TableHead>
-            <TableHead >Role</TableHead>
-            <TableHead >Status</TableHead>
+            <TableHead className="w-[75px] text-center">SL No</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Eamil</TableHead>
+            <TableHead>Role</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead className="mx-auto flex items-center justify-center">
               Actions
             </TableHead>
@@ -100,7 +99,7 @@ const Users = () => {
               <TableCell>{user.status}</TableCell>
               <TableCell className="text-center space-x-5 flex items-center justify-between w-[120px] mx-auto ">
                 <DeleteBlockConfirmModal
-                  key={user?._id}
+                  key={index}
                   onConfirm={() => handleDeleteUser(user._id as string)}
                   description={deleteDescription}
                 >
@@ -110,7 +109,7 @@ const Users = () => {
                 </DeleteBlockConfirmModal>
                 {user?.status === Status.active ? (
                   <DeleteBlockConfirmModal
-                    key={user._id}
+                    key={index}
                     onConfirm={() => handleBlockUser(user?._id as string)}
                     description={blockDescription}
                   >
@@ -123,7 +122,7 @@ const Users = () => {
                   </DeleteBlockConfirmModal>
                 ) : (
                   <DeleteBlockConfirmModal
-                    key={user._id}
+                    key={index}
                     onConfirm={() => handleUnblockUser(user?._id as string)}
                     description={unblockDescription}
                   >

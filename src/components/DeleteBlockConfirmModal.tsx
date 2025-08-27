@@ -30,7 +30,7 @@ export function DeleteBlockConfirmModal({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent className="flex flex-col justify-center items-center w-fit">
+      <AlertDialogContent className="flex flex-col justify-center items-center min-w-xs">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>

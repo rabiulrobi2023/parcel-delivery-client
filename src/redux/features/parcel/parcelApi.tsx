@@ -1,14 +1,14 @@
 import type { IResponse } from "@/interfaces/response.interface";
 import { baseApi } from "@/redux/baseApi";
-import type { IParcel } from "../parcel/parcel.interface";
+import type { IParcel } from "./parcel.interface";
 
-export const authApi = baseApi.injectEndpoints({
+export const parcelApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    userRegistration: builder.mutation({
-      query: (userInfo) => ({
-        url: "user/register",
+    createParcel: builder.mutation<IResponse, IParcel>({
+      query: (parcelInfo) => ({
+        url: "parcel",
         method: "POST",
-        data: userInfo,
+        data: parcelInfo,
       }),
     }),
     userLogin: builder.mutation({
@@ -29,14 +29,12 @@ export const authApi = baseApi.injectEndpoints({
       query: () => ({
         url: "auth/logout",
         method: "POST",
-      }),invalidatesTags:["USER"]
+      }),
+      invalidatesTags: ["USER"],
     }),
   }),
 });
 
 export const {
-  useUserRegistrationMutation,
-  useUserLoginMutation,
-  useGetMeQuery,
-  useLogoutMutation,
-} = authApi;
+useCreateParcelMutation
+} = parcelApi;

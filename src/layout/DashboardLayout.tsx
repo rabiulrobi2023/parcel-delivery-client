@@ -5,7 +5,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { useLogutUser } from "@/utils/logoutUser";
+import { useLogutUser } from "@/hooks/useLogoutUser";
 import { HomeIcon, LogOutIcon } from "lucide-react";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router";
@@ -17,7 +17,7 @@ export default function DashboardLayout() {
     <SidebarProvider>
       <AppSidebar className="" />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-second justify-between">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-6 bg-second justify-between">
           <div className="flex items-center">
             <SidebarTrigger
               onClick={() => setexpended(!expanded)}

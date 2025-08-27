@@ -1,5 +1,5 @@
 import Parcels from "@/pages/Parcels";
-import Users from "@/pages/Users";
+import Users from "@/pages/Admin/Users";
 import type { IRouteItems } from "@/utils/generateRoutes";
 
 export const adminSidebarItems: IRouteItems[] = [

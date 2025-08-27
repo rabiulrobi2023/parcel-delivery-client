@@ -1,27 +1,19 @@
-import Parcels from "@/pages/Parcels";
+
+import CreateParcel from "@/pages/Sender/CreateParcel";
 import type { IRouteItems } from "@/utils/generateRoutes";
 import { lazy } from "react";
-const Users = lazy(() => import("@/pages/Users"));
+lazy(() => import("@/pages/Admin/Users"));
 export const senderSidebarItems: IRouteItems[] = [
   {
-    title: "Dashboard",
+    title: "Parcel Management",
     url: "/dashboard/sender",
     items: [
       {
-        title: "Create Parcel",
+        title: "Send a Parcel",
         url: "create-parcel",
-        component: Users,
-      },
-      {
-        title: "Update Parcel",
-        url: "update-parcel",
-        component: Parcels,
-      },
-      {
-        title: "Analytics",
-        url: "analytics",
-        component: Parcels,
+        component: CreateParcel,
       },
     ],
   },
 ];
+

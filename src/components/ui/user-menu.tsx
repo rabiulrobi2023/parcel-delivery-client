@@ -14,7 +14,7 @@ import {
 
 import type { IUser } from "@/interfaces/user.interface";
 
-import { useLogutUser } from "@/utils/logoutUser";
+import { useLogutUser } from "@/hooks/useLogoutUser";
 import { Link } from "react-router";
 
 export default function UserMenu({ user }: { user: IUser }) {
