@@ -16,7 +16,6 @@ import ModeToggler from "@/components/ui/mode.toggler";
 import { Link } from "react-router";
 import { useGetMeQuery } from "@/redux/features/auth/auth.api";
 
-
 const navigationLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -65,7 +64,7 @@ export default function Navbar() {
                   />
                 </svg>
               </Button>
-            </PopoverTrigger>
+            </PopoverTrigger >
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">

@@ -5,7 +5,7 @@ import type { IRouteItems } from "@/utils/generateRoutes";
 export const superAdminSidebarItems: IRouteItems[] = [
   {
     title: "Dashboard",
-    url: "/dashboard/super-admin",
+    url: "/dashboard/superAdmin",
     items: [
       {
         title: "All Users",

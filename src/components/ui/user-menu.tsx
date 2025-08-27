@@ -13,18 +13,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import type { IUser } from "@/interfaces/user.interface";
-import { useAppDispatch } from "@/hooks/reduxHook";
+
+import { useLogutUser } from "@/utils/logoutUser";
 import { Link } from "react-router";
-import { authApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
 
 export default function UserMenu({ user }: { user: IUser }) {
   const splitName = user?.name?.split(" ");
-  const dispatch = useAppDispatch();
-  const [logout] = useLogoutMutation();
-  const handleLogout = async () => {
-    await logout(undefined);
-    dispatch(authApi.util.resetApiState()); //It use to clear case. Without it api case does not clean.
-  };
+  // const dispatch = useAppDispatch();
+  // const [logout] = useLogoutMutation();
+  // const handleLogout = async () => {
+  //   await logout(undefined);
+  //   dispatch(authApi.util.resetApiState()); //It use to clear case. Without it api case does not clean.
+  // };
+
+  //****************Logout using useLogout hooks****************** */
+  const handleLogout = useLogutUser();
 
   return (
     <DropdownMenu>
@@ -60,26 +63,6 @@ export default function UserMenu({ user }: { user: IUser }) {
               <span>Dashboard</span>
             </DropdownMenuItem>
           </Link>
-
-          {/* <DropdownMenuItem>
-            <Layers2Icon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Option 2</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <BookOpenIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Option 3</span>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <PinIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Option 4</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <UserPenIcon size={16} className="opacity-60" aria-hidden="true" />
-            <span>Option 5</span>
-          </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

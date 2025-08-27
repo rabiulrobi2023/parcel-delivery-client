@@ -25,15 +25,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     navMain: selectNavMenu(user?.data?.role),
   };
   return (
-    <Sidebar {...props}>
-      <SidebarHeader className="px-[16px]">
+    <Sidebar {...props}  >
+      <SidebarHeader className="px-[16px] bg-second">
         <Logo></Logo>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-second text-gray-100">
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+            <SidebarGroupLabel className="text-first text-[14px] font-bold  ">
+              {item.title}
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (

@@ -26,8 +26,8 @@ export function LoginForm() {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      email: "rabiul.robi2023@gmail.com",
-      password: "111111",
+      email: "admin@gmail.com",
+      password: "123456",
     },
   });
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ export function LoginForm() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(error.data.message);
+      toast.error(error.data.message||"Something went wrong");
     }
   };
   return (

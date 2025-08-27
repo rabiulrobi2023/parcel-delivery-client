@@ -7,9 +7,32 @@ export const userApi = baseApi.injectEndpoints({
         url: "/user",
         method: "GET",
       }),
-      transformResponse: (res)=>res.data
+      transformResponse: (res) => res.data,
+      providesTags: ["USER"],
+    }),
+    deleteUser: builder.mutation({
+      query: (userId: string) => ({
+        url: `/user/${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
+    blockUser: builder.mutation({
+      query: (userId: string) => ({
+        url: `user/block-user/${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
+    }),
+    unblockUser: builder.mutation({
+      query: (userId: string) => ({
+        url: `user/unblock-user/${userId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["USER"],
     }),
   }),
 });
 
-export const {useAllUsersQuery} = userApi
+export const { useAllUsersQuery, useDeleteUserMutation, useBlockUserMutation,useUnblockUserMutation } =
+  userApi;

@@ -2,7 +2,7 @@ import type { TRole } from "@/interfaces/role.interface";
 import { adminSidebarItems } from "@/routes/adminSidebarItems";
 import { receiverSidebarItems } from "@/routes/receiverSidebarItems";
 import { senderSidebarItems } from "@/routes/senderSidebarItems";
-import { superAdminSidebarItems } from "@/routes/superAdminSidebarItems copy";
+import { superAdminSidebarItems } from "@/routes/superAdminSidebarItems ";
 
 export const selectNavMenu = (role: TRole) => {
   switch (role) {

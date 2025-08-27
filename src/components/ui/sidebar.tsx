@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -32,8 +32,10 @@ const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
-type SidebarContextProps = {
-  state: "expanded" | "collapsed";
+type TState = "expanded" | "collapsed";
+
+export type SidebarContextProps = {
+  state: TState;
   open: boolean;
   setOpen: (open: boolean) => void;
   openMobile: boolean;
@@ -260,6 +262,9 @@ function SidebarTrigger({
 }: React.ComponentProps<typeof Button>) {
   const { toggleSidebar } = useSidebar();
 
+  const sidebarContext = React.useContext(SidebarContext);
+  const state = sidebarContext?.state;
+
   return (
     <Button
       data-sidebar="trigger"
@@ -273,7 +278,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      {state === "expanded" ? <ArrowLeft /> : <ArrowRight />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

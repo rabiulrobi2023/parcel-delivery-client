@@ -6,12 +6,13 @@ import { generateRoutes } from "@/utils/generateRoutes";
 import { createBrowserRouter, Navigate } from "react-router";
 import { adminSidebarItems } from "./adminSidebarItems";
 import { senderSidebarItems } from "./senderSidebarItems";
-import { receiverSidebarItems } from "./receiverSidebarItems";
-import { superAdminSidebarItems } from "./superAdminSidebarItems copy";
+
+import { superAdminSidebarItems } from "./superAdminSidebarItems ";
 import checkAuth from "@/utils/checkAuth";
 import About from "@/pages/About";
 import { Role } from "@/constants/role";
 import Unauthorized from "@/pages/Unauthorized";
+import { receiverSidebarItems } from "./receiverSidebarItems";
 
 const superAdminRoutes = generateRoutes(superAdminSidebarItems);
 const adminRoutes = generateRoutes(adminSidebarItems);

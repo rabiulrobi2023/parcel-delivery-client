@@ -67,7 +67,7 @@ export function RegistrationForm() {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(error.data.message);
+      toast.error(error.data.message||"Something went wrong");
     }
   };
   return (
